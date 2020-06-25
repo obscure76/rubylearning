@@ -1,10 +1,10 @@
 #!/usr/local/bin/ruby -w
 
 
-a = "Hello, world!"
+a = 'Hello, world!'
 puts a
 
-3.times { puts "Hello!" }
+3.times { puts 'Hello!' }
 
 1.times { puts a}
 
@@ -20,8 +20,8 @@ end
 
 
 # Time for bed...
-puts say_goodnight("John-Boy")
-puts say_goodnight("Mary-Ellen")
+puts say_goodnight('John-Boy')
+puts say_goodnight('Mary-Ellen')
 
 
 a = [ 1, 'cat', 3.14 ]
@@ -48,7 +48,7 @@ instSection = {
 
 puts instSection
 
-puts instSection.fetch("drum")
+puts instSection.fetch('drum')
 puts instSection['oboe']
 
 # count = 3
@@ -64,7 +64,7 @@ puts instSection['oboe']
 # end
 
 square = 2
-square = square*square  while square < 1000
+square = square*square while square < 1000
 puts square
 
 
@@ -79,7 +79,7 @@ def callBlock
   yield
 end
 
-callBlock { puts "In the block" } # code block , gets executed on yield.
+callBlock { puts 'In the block' } # code block , gets executed on yield.
 
 
 # iterator puts -- write to console with new line.
@@ -88,9 +88,45 @@ a.each { |animal| puts animal }  # iterate over the contents
 
 
 # prints *****3456abcde -- write to console no new line
-5.times {  print "*" }
+5.times { print '*' }
 3.upto(6) {|i|  print i }
 ('a'..'e').each {|char| print char }
 
 puts
-printf "Number: %5.2f, String: %s", 1.23, "hello"
+printf 'Number: %5.2f, String: %s', 1.23, "hello\n\n\n"
+
+
+def fibUpTo(max)
+  i1, i2 = 1, 1 # parallel assignment
+  while i1 <= max
+    yield i1
+    i1, i2 = i2, i1+i2
+  end
+end
+fibUpTo(1000) { |f| print f, ' ' }
+
+
+num = 231
+7.times do
+  print num.class, " ", num, "\n"
+  num *= num
+end
+
+
+
+3.times        { print "X " }
+puts
+1.upto(5)      { |i| print i, " " }
+puts
+99.downto(95)  { |i| print i, " " }
+puts
+50.step(80, 5) { |i| print i, " " }
+
+puts
+
+def varargs(arg1, *rest)
+  puts "Got #{arg1} and #{rest.join(', ')}"
+end
+varargs("one")	#	"Got one and "
+varargs("one", "two")	#	"Got one and two"
+varargs "one", "two", "three"	#	"Got one and two, three"
