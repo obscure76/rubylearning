@@ -10,3 +10,5 @@ end
 
 puts Logger.create.object_id
 puts Logger.create.object_id
+
+

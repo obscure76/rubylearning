@@ -182,3 +182,34 @@ ba.leftChannel = ba.rightChannel = 99
 ba.volume = 5
 print ba.leftChannel
 print ba.rightChannel
+
+
+class Bowdlerize
+  def initialize(aString)
+    @value = aString.gsub(/[aeiou]/, '*')
+  end
+
+  def +(other)
+    Bowdlerize.new(self.to_s + other.to_s)
+  end
+
+  def to_s
+    @value
+  end
+end
+
+a = Bowdlerize.new("damn ")	#	d*mn
+a += "shame"	#	d*mn sh*m*
+
+class Periods
+  def each
+    yield "Classical"
+    yield "Jazz"
+    yield "Rock"
+  end
+end
+
+periods = Periods.new
+for genre in periods
+  print genre, " "
+end
